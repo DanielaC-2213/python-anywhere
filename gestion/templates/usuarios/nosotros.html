@@ -2,13 +2,15 @@
 {% load crispy_forms_tags %}
 {% block contenido %}
 {% load static %}
-<body>
+<div class="cuerpo-user">
     <div class="contenido-cuerpo borde">
         <div>
             <h1 class="m-4">Nosotros</h1>
-            <p class="borde mb-4" style=" border-color:#000000; border-top-style:solid; border-top-width:2px;"></p>
+            <div>
+                <p class="lineap borde"></p>
+            </div>   
         </div>
-        <div class="m-5 px-3">
+        <div class=" mt-3 m-5 px-3">
             <h3>Somos una empresa constituida desde hace 10 años en la ciudad de Bogotá por ............. y adquirida desde 
                 hace 2 años por el actual propietario Carlos Andrés Pulido Ramírez como un sueño de constituir un negocio propio
                 y con metas grandes y firmes que ahora se demuestran con "Central de licuadoras Pulido" que es un negocio certificado
@@ -17,5 +19,5 @@
             </h3>
         </div>
     </div>
-</body>
+</div>
 {% endblock contenido %}

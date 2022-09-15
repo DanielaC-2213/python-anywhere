@@ -2,61 +2,63 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block contenido %}
-<div class="contenido-cuerpo borde">
-    <h1 class="text-center">{{titulo_pagina}}</h1>
-    <div>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a class="text-decoration-none" href="{% url 'administrador-inicioadmin' %}">Inicio</a></li>
-          <li class="breadcrumb-item"><a class="text-decoration-none">Copia de Seguridad</a></li>
-        </ol>
-    </div>
-    <div class="row">
-        <div class="col">
-            <h2>Exportar</h2>
-            <form action="{% url 'administrador-copiaseguridad' tipo='D' %}" method="POST">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <!-- <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" name="modelos_lista" value="Todo" id="">
-                        <label class="form-check-label" for="modelos_lista">Todo</label>
-                    </div> -->
-                    {% for modelo in ficheros %}
-                    <div class="mb-3 "> 
-                        <a href="{% static 'copiaseguridad' %}/{{modelo}}">{{modelo}}</a>
+<div class="cuerpo-admin">
+    <div class="contenido-cuerpo borde">
+        <h1 class="text-center">{{titulo_pagina}}</h1>
+        <div>
+            <ol class="breadcrumb d-flex justify-content-end">
+            <li class="breadcrumb-item"><a class="indice text-decoration-none" href="{% url 'administrador-inicioadmin' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a class="indice text-decoration-none">Copia de Seguridad</a></li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>Exportar</h2>
+                <form action="{% url 'administrador-copiaseguridad' tipo='D' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <!-- <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" name="modelos_lista" value="Todo" id="">
+                            <label class="form-check-label" for="modelos_lista">Todo</label>
+                        </div> -->
+                        {% for modelo in ficheros %}
+                        <div class="mb-3 "> 
+                            <a href="{% static 'copiaseguridad' %}/{{modelo}}">{{modelo}}</a>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
-                </div>
-                <input type="submit" value="Generar Copia">
-            </form>
-        </div>
-        <div class="col">
-            <h2>Importar</h2>
-            <form action="{% url 'administrador-copiaseguridad' tipo='U' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %} {{form|crispy}}
-                <input type="submit" value="Enviar">
-            </form>
-        </div>
-        <div class="col">
-            <h2>Historial de Importes</h2>
-            <table class="table-responsive bg-white table-bordered results  w-100"  id="tabla">
-                <thead class="bg-info">
-                    <tr class="text-white">
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Archivo</th>
-                        <th scope="col">Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for copia in copiaseguridad %}
-                    <tr>
-                        <td>{{copia.nombre}} </td>
-                        <td>{{copia.archivo.url}} </td>
-                        <td>{{copia.fecha}} </td>
-                    </tr>
-                    {% endfor%}
-                </tbody>
-            </table>
+                    <input type="submit" value="Generar Copia">
+                </form>
+            </div>
+            <div class="col">
+                <h2>Importar</h2>
+                <form action="{% url 'administrador-copiaseguridad' tipo='U' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %} {{form|crispy}}
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+            <div class="col">
+                <h2>Historial de Importes</h2>
+                <table class="table-responsive bg-white table-bordered results  w-100"  id="tabla">
+                    <thead class="bg-info">
+                        <tr class="text-white">
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Archivo</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for copia in copiaseguridad %}
+                        <tr>
+                            <td>{{copia.nombre}} </td>
+                            <td>{{copia.archivo.url}} </td>
+                            <td>{{copia.fecha}} </td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</div>    
 {% endblock contenido %}

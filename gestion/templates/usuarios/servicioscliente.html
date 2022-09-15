@@ -2,14 +2,16 @@
 {% load crispy_forms_tags %}
 {% block contenido %}
 {% load static %}
-<body>
+<div class="cuerpo-user">
     <div class="contenido-cuerpo borde">
         <div>
             <h1 class="m-4">Servicios</h1>
-            <p class="borde mb-4" style=" border-color:#000000; border-top-style:solid; border-top-width:2px;"></p>
+            <div>
+                <p class="lineap borde"></p>
+            </div> 
         </div>
         <div>
-            <h3 class="px-3">Les brindamos servicio de mantenimiento y reparación de todo tipo de electrodomésticos.</h3>
+            <h3 class="mt-3 px-3">Les brindamos servicio de mantenimiento y reparación de todo tipo de electrodomésticos.</h3>
         </div><br>
         <div class="px-3">
             <h3>Comuniquese con nosotros para tener el gusto de atenderlos y bridarles el mejor servicio
@@ -50,5 +52,5 @@
             </div>
         </div>
     </div>
-</html>
+</div>    
 {% endblock contenido %}

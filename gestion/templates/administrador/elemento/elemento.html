@@ -2,16 +2,17 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block contenido %}
+<div class="cuerpo-admin">
     <div class="contenido-cuerpo borde">
         <h1 class="text-center">{{titulo_pagina}}</h1>
         <div>
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a class="text-decoration-none" href="{% url 'administrador-inicioadmin' %}">Inicio</a></li>
-              <li class="breadcrumb-item"><a class="text-decoration-none" href="{% url 'administrador-elemento' %}">Elemento</a></li>
+            <ol class="breadcrumb d-flex justify-content-end">
+              <li class="breadcrumb-item"><a class="indice text-decoration-none" href="{% url 'administrador-inicioadmin' %}">Inicio</a></li>
+              <li class="breadcrumb-item"><a class="indice text-decoration-none" href="{% url 'administrador-elemento' %}">Elemento</a></li>
             </ol>
         </div>
         <form id="form1" action="" method="POST" enctype="multipart/form-data">
-            <table class="table bg-white table-bordered results  w-100" id="proyectos">
+            <table class="table display responsive table-bordered results  w-100" id="proyectos">
                 <thead class="bg-info">
                     <tr class="text-white">
                         <th scope="col">Codigo</th>
@@ -22,7 +23,7 @@
                         <th scope="col">Descripción</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Foto</th>
-                        <th scope="col">Opciones‍‍‍‍‍ㅤ‍‍‍‍‍ㅤ‍‍‍‍‍ㅤ‍‍‍‍‍ㅤ‍‍‍‍‍ㅤ‍‍‍‍‍ㅤ‍‍‍‍‍ㅤ</th>
+                        <th scope="col">Opciones‍‍‍‍‍ㅤ‍‍‍‍‍ㅤ‍‍</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +44,7 @@
                         <td><img class="producto-img" width="100px" src="{{elemento.foto.url}}" alt=""></td>
                         <td>
                             <div class="row">
-                                <a href="{% url 'administrador-electrodomestico-favorito' elemento.id %}" class="btn btn-primary btn-sm col-2"><img  width="16" height="16" 
+                                <a href="{% url 'administrador-electrodomestico-favorito' elemento.id %}" class="btn btn-primary btn-sm col-3 m-1"><img  width="16" height="16" 
                                 {% if elemento.favorito == True %}
                                     src="{% static 'img/estrellitaActivada-1.png' %}" 
                                 {% else %}
@@ -51,7 +52,7 @@
                                 {% endif %}
                                 alt=""/></a>
                                 <!-- Boton modal elemento editar -->
-                                <a class="btn btn-primary btn-sm col-2"
+                                <a class="btn btn-primary btn-sm col-3 m-1"
                                     href="{% url 'administrador-elemento-editar' elemento.id %}"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -61,15 +62,13 @@
                                             d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                     </svg></a>
                                 <!-- Boton modal elemento eliminar -->
-                                <a class="btn btn-danger btn-sm col-2"
-                                    href="{% url 'administrador-elemento-eliminar' elemento.id %}">
-                                    <svg
+                                <a class="btn btn-danger btn-sm col-3 m-1"
+                                    href="{% url 'administrador-elemento-eliminar' elemento.id %}"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-trash3" viewBox="0 0 16 16">
                                         <path
                                             d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                                    </svg>
-                                </a>
+                                    </svg></a>
                                 {% endif %}
                             </div>
                         </td>
@@ -155,4 +154,5 @@
         </div>
     </div>
   </div>
+</div>  
 {% endblock contenido %}

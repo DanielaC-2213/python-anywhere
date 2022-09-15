@@ -1,155 +1,157 @@
 {% extends 'partials/admin-body.html' %} 
 {% load crispy_forms_tags %}
 {% block contenido %}
-<div class="contenido-cuerpo borde">
-    <h1 class="text-center">{{titulo_pagina}}</h1>
-    <div>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a class="text-decoration-none" href="{% url 'administrador-inicioadmin' %}">Inicio</a></li>
-          <li class="breadcrumb-item"><a class="text-decoration-none" href="{% url 'administrador-servicio' %}">Servicio</a></li>
-        </ol>
-    </div>
-    <form id="form1">
-        <table class="table bg-white table-bordered results" id="proyectos">
-            <thead class="bg-info">
-                <tr class="text-white">
-                    <th scope="col">Tipo Servicio</th>
-                    <th scope="col">Articulo</th>
-                    <th scope="col">Falla que Presenta</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Observaciones</th>
-                    <th scope="col">Fecha Entrada</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for servicio in servicios %}
-                    {% if servicio.estado == "Activo" %}
-                        <tr>
-                            <td>{{servicio.tiposervicio}}</td>
-                            <td>{{servicio.electrodomestico}}</td>
-                            <td>{{servicio.fallas_basicas}}</td>
-                            <td>{{servicio.diagnostico}}</td>
-                            <td>{{servicio.observacion}}</td>
-                            <td>{{servicio.fecha_entrada}}</td>
-                            <td> <!-- Boton modal servicio editar -->
-                                <a class="btn btn-primary btn-sm" href="{% url 'administrador-servicio-editar' servicio.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 
-                                        0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 
-                                        0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                </svg></a>
-                                <!-- Boton modal servicio eliminar -->
-                                <a class="btn btn-danger btn-sm" href="{% url 'administrador-servicio-eliminar' servicio.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 
-                                        0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 
-                                        0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 
-                                        1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 
-                                        1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                </svg></a>
-                    {% endif %}            
-                            </td>
-                        </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </form>
-    <div class="anuncio"> <!-- Boton modal servicio -->
-        <a type="button" class="boton" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <input class="btn btn-success btn-block" type="submit" Value="Crear Servicio">
-        </a>
-        <a type="button" class="boton" href="{% url 'administrador-electrodomestico' %}">
-            <input class="btn btn-success btn-block" type="submit" Value="Electrodomestico">
-        </a>                <!-- Modal servicio -->
-        {% load crispy_forms_tags %}                    
-        <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Servicio</h5>
-                        <a class="btn-close" data-bs-dismiss="modal" href="{{url_back}}" aria-label="Close"></a>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            <div id="div_id_usuario" class="mb-3"> <label for="id_usuario" class="form-label">
-                                Usuario
-                            </label> 
-                            <select name="usuario" class="select form-select" id="id_usuario"> 
-                                <option value="" selected="">---------</option>
-                                {% for usuariosA in usuario %}
-                                    <option value="" selected="">{{usuariosA}}</option>
-                                {% endfor %}
-                            </select> 
+<div class="cuerpo-admin">
+    <div class="contenido-cuerpo borde">
+        <h1 class="text-center">{{titulo_pagina}}</h1>
+        <div>
+            <ol class="breadcrumb d-flex justify-content-end">
+            <li class="breadcrumb-item"><a class="indice text-decoration-none" href="{% url 'administrador-inicioadmin' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a class="indice text-decoration-none" href="{% url 'administrador-servicio' %}">Servicio</a></li>
+            </ol>
+        </div>
+        <form id="form1">
+            <table class="table table-bordered results" id="proyectos">
+                <thead class="bg-info">
+                    <tr class="text-white">
+                        <th scope="col">Tipo Servicio</th>
+                        <th scope="col">Articulo</th>
+                        <th scope="col">Falla que Presenta</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Observaciones</th>
+                        <th scope="col">Fecha Entrada</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for servicio in servicios %}
+                        {% if servicio.estado == "Activo" %}
+                            <tr>
+                                <td>{{servicio.tiposervicio}}</td>
+                                <td>{{servicio.electrodomestico}}</td>
+                                <td>{{servicio.fallas_basicas}}</td>
+                                <td>{{servicio.diagnostico}}</td>
+                                <td>{{servicio.observacion}}</td>
+                                <td>{{servicio.fecha_entrada}}</td>
+                                <td> <!-- Boton modal servicio editar -->
+                                    <a class="btn btn-primary btn-sm" href="{% url 'administrador-servicio-editar' servicio.id %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 
+                                            0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 
+                                            0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg></a>
+                                    <!-- Boton modal servicio eliminar -->
+                                    <a class="btn btn-danger btn-sm" href="{% url 'administrador-servicio-eliminar' servicio.id %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 
+                                            0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 
+                                            0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 
+                                            1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 
+                                            1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                    </svg></a>
+                        {% endif %}            
+                                </td>
+                            </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+        <div class="anuncio"> <!-- Boton modal servicio -->
+            <a type="button" class="boton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <input class="btn btn-success btn-block" type="submit" Value="Crear Servicio">
+            </a>
+            <a type="button" class="boton" href="{% url 'administrador-electrodomestico' %}">
+                <input class="btn btn-success btn-block" type="submit" Value="Electrodomestico">
+            </a>                <!-- Modal servicio -->
+            {% load crispy_forms_tags %}                    
+            <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Servicio</h5>
+                            <a class="btn-close" data-bs-dismiss="modal" href="{{url_back}}" aria-label="Close"></a>
                         </div>
-                        <div id="div_id_electrodomestico" class="mb-3"> 
-                            <label for="id_electrodomestico" class="form-label requiredField">
-                                Articulo
-                                <span class="asteriskField">*</span> 
-                            </label> 
-                            <select name="electrodomestico" class="select form-select" required="" id="id_electrodomestico"> 
-                                <option value="" selected="">---------</option> 
-                                {% for itemL in item %}
-                                    <option value="" selected="">{{itemL}}</option> 
-                                {% endfor %}
-                            </select> 
+                        <div class="modal-body">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div id="div_id_usuario" class="mb-3"> <label for="id_usuario" class="form-label">
+                                    Usuario
+                                </label> 
+                                <select name="usuario" class="select form-select" id="id_usuario"> 
+                                    <option value="" selected="">---------</option>
+                                    {% for usuariosA in usuario %}
+                                        <option value="" selected="">{{usuariosA}}</option>
+                                    {% endfor %}
+                                </select> 
+                            </div>
+                            <div id="div_id_electrodomestico" class="mb-3"> 
+                                <label for="id_electrodomestico" class="form-label requiredField">
+                                    Articulo
+                                    <span class="asteriskField">*</span> 
+                                </label> 
+                                <select name="electrodomestico" class="select form-select" required="" id="id_electrodomestico"> 
+                                    <option value="" selected="">---------</option> 
+                                    {% for itemL in item %}
+                                        <option value="" selected="">{{itemL}}</option> 
+                                    {% endfor %}
+                                </select> 
+                            </div>
+                                {{ form|crispy }}
                         </div>
-                            {{ form|crispy }}
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-secondary" data-bs-dismiss="modal" href="{{url_back}}">Cancelar</a>
-                        <input type="submit" class="btn btn-success" value="Agregar Servicio"></button>
-                        </form> 
+                        <div class="modal-footer">
+                            <a class="btn btn-secondary" data-bs-dismiss="modal" href="{{url_back}}">Cancelar</a>
+                            <input type="submit" class="btn btn-success" value="Agregar Servicio"></button>
+                            </form> 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div> 
-</div>
-<div class="toast-container position-fixed  end-0  p-3 " style="z-index: 1000 !important; top:150px !important; left: 800px;">
-    <div id="success" class="conttoast toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="coco conttoast2 d-flex align-items-center" style="justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" margin="auto" width="100" height="100" fill="#fff" class="bi bi-check-lg" viewBox="0 0 16 16">
-                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 
-                         0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg>
-        </div>
-        <div class="conttoast3 cco">
-          <div class="titulo" style="text-align: center;">CORRECTO</div>
-          <div class="subtitulo" style="text-align: center;">El elemento se agrego correctamente</div>
+        </div> 
+    </div>
+    <div class="toast-container position-fixed  end-0  p-3 " style="z-index: 1000 !important; top:150px !important; left: 800px;">
+        <div id="success" class="conttoast toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="coco conttoast2 d-flex align-items-center" style="justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" margin="auto" width="100" height="100" fill="#fff" class="bi bi-check-lg" viewBox="0 0 16 16">
+                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 
+                            0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg>
+            </div>
+            <div class="conttoast3 cco">
+            <div class="titulo" style="text-align: center;">CORRECTO</div>
+            <div class="subtitulo" style="text-align: center;">El elemento se agrego correctamente</div>
+            </div>
         </div>
     </div>
-</div>
-<div class="toast-container position-fixed  end-0  p-3 " style="z-index: 1000 !important; top:150px !important; left: 800px;">
-    <div id="warning" class="conttoast toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="coal conttoast2 d-flex align-items-center" style="justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#fff" class="bi bi-question-lg" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 
-                3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 
-                1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 
-                0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 
-                0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"/>
-              </svg>
-        </div>
-        <div class="ca conttoast3">
-          <div class="titulo" style="text-align: center;">ALERTA</div>
-          <div class="subtitulo" style="text-align: center;">Este elemento ya existe</div>
-        </div>
-    </div>
-</div>
-  <div class="toast-container position-fixed  end-0  p-3 " style="z-index: 1000 !important; top:150px !important; left: 800px;">
-    <div id="error" class="conttoast toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="coer conttoast2 d-flex align-items-center" style="justify-content: center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#fff" class="bi bi-x" viewBox="0 0 16 16">
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 
-                1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-              </svg>
-        </div>
-        <div class="ce conttoast3">
-          <div class="titulo let" style="text-align: center;">ERROR</div>
-          <div class="subtitulo let"  style="padding: 0 10px !important; text-align: center;">El elemento no se pudo agregar</div>
+    <div class="toast-container position-fixed  end-0  p-3 " style="z-index: 1000 !important; top:150px !important; left: 800px;">
+        <div id="warning" class="conttoast toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="coal conttoast2 d-flex align-items-center" style="justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#fff" class="bi bi-question-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 
+                    3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 
+                    1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 
+                    0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 
+                    0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"/>
+                </svg>
+            </div>
+            <div class="ca conttoast3">
+            <div class="titulo" style="text-align: center;">ALERTA</div>
+            <div class="subtitulo" style="text-align: center;">Este elemento ya existe</div>
+            </div>
         </div>
     </div>
-  </div>
+    <div class="toast-container position-fixed  end-0  p-3 " style="z-index: 1000 !important; top:150px !important; left: 800px;">
+        <div id="error" class="conttoast toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="coer conttoast2 d-flex align-items-center" style="justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#fff" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 
+                    1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </div>
+            <div class="ce conttoast3">
+            <div class="titulo let" style="text-align: center;">ERROR</div>
+            <div class="subtitulo let"  style="padding: 0 10px !important; text-align: center;">El elemento no se pudo agregar</div>
+            </div>
+        </div>
+    </div>
+</div>    
 {% endblock contenido %}

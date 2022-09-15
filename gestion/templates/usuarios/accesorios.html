@@ -2,29 +2,30 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block contenido %}
-<section class="contenido-cuerpo borde">
-    <div>
-        <h1 class="m-4">Accesorios</h1>
-        <p class="borde mb-4" style=" border-color:#000000; border-top-style:solid; border-top-width:2px;"></p>
-    </div>
-    {% for subcategoria in subcategorias %}  
-        <div> 
-            <h3 class="text-center">{{subcategoria.subcategoria}}</h3>
+<div class="cuerpo-user">
+    <section class="contenido-cuerpo borde">
+        <div>
+            <h1 class="m-4">Accesorios</h1>
         </div>
-        <div class="glider-contain col-xl-10" id="glider-{{subcategoria.id}}">
-            <div style="width: 100%;">
-                <p style="border-color: #000000; border-top-style: solid; border-top-width: 3px;"></p>
+        {% for subcategoria in subcategorias %}  
+            <div> 
+                <h3 class="text-center">{{subcategoria.subcategoria}}</h3>
             </div>
-            <div class="glider-cat-1 glider">
-                {% for elemento in elementos %}
-                    {% if subcategoria.id == elemento.tipo_elemento_id %}
-                        {% include "cards/card_elemento.html" %}
-                    {% endif %}
-                {% endfor %}
+            <div>
+                <p class="lineap borde"></p>
+            </div> 
+            <div class="glider-contain col-xl-10" id="glider-{{subcategoria.id}}">
+                <div class="glider-cat-1 glider">
+                    {% for elemento in elementos %}
+                        {% if subcategoria.id == elemento.tipo_elemento_id %}
+                            {% include "cards/card_elemento.html" %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <button class="glider-prev"><i class="fas fa-chevron-circle-left"></i></button>
+                <button class="glider-next"><i class="fas fa-chevron-circle-right"></i></button>                 
             </div>
-            <button class="glider-prev"><i class="fas fa-chevron-circle-left"></i></button>
-            <button class="glider-next"><i class="fas fa-chevron-circle-right"></i></button>                 
-        </div>
-    {% endfor %}
-</section>
+        {% endfor %}
+    </section>
+</div>    
 {% endblock contenido %}

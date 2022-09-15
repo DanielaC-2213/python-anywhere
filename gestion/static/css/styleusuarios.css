@@ -17,16 +17,29 @@ html{
     height: 100%;
 } 
 body{
-    background-image: url( '../img/fondo-de-body.webp');
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100%;
     min-width: 100%;
     display: flex;
     flex-direction: column;
 }
-footer{
-    margin-top: auto;
+
+.dark-mode h1{
+    color: #d8d8d8;
+}
+
+.dark-mode h2{
+    color: #d8d8d8;
+}
+
+.dark-mode h3{
+    color: #d8d8d8;
+}
+
+a:hover{
+    color: #111111 !important;
+}
+
+.dark-mode a:hover{
+    color: #ff9932 !important;
 }
 /* -------------------------------LINEA LO MAS VENDIDO INDEX------------------------------------------------ */
 .lineap{
@@ -35,8 +48,9 @@ footer{
     border-top-width:3px;
 }
 .dark-mode .lineap{
-    border-color: #fff;
+    border-color: #ff9932;
 }
+
 h1, h2, h3, h4 {
     TEXT-ALIGN: center !important;
 }
@@ -90,7 +104,7 @@ header{
     height: auto;
 }
 .dark-mode header{
-    background-color:#020a1d;
+    background-color:#030303;
     color:#fff;
 }
 
@@ -100,7 +114,7 @@ header{
 }
 .dark-mode .subheader{
     background-color:#020a1d;
-    color:#fff;
+    color:#d8d8d8;
 }
 .sub2header{
     height: auto;
@@ -108,7 +122,7 @@ header{
     padding: 0 10%;
 }
 .logo{
-    width: 320px;
+    width: 290px;
 }
 .opheader{
     display: flex;
@@ -122,6 +136,11 @@ header{
     justify-content: right;
     width: 100%;
 }
+
+.dark-mode .part{
+    color: #d8d8d8;
+}
+
 .buscar{
     background-color: #fff;
     width: auto;
@@ -136,44 +155,47 @@ header{
     height: auto;
 }
 .dark-mode .intsection{
-    background: #4e5458;
+    background: #181818;
 }
 .intheader{
     background-color: #e6571f;
     height: auto;
     margin: 0 10%;
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
-    font-weight: bolder;
+    font-weight: bolder; */
     text-decoration-style: none;
     display: flex;
     flex-wrap: wrap;
+}
+.dark-mode .intheader{
+    background-color: #0B318A;
+    color: #000;
 }
 @media (max-width:420px) {
     .intheader{
         background-color: #e6571f;
         height: auto;
         width: 100%;
-        font-family: Arial, Helvetica, sans-serif;
+        /* font-family: Arial, Helvetica, sans-serif;
         font-size: larger;
-        font-weight: bolder;
+        font-weight: bolder; */
         text-decoration-style: none;
         display: flex;
         flex-wrap: wrap;
         margin: 0%;
     }
-}
-.dark-mode .intheader{
-    background: #fff;
-    color: #000;
+    .dark-mode .intheader{
+        background-color: #0B318A;
+        color: #000;
+    }
 }
 
+
 .item {
-    border-color: #e6571f;
-    background-color: #e6571f;
     color: #fff;
     text-align: center;
-    box-shadow: 0 0 40px 40px #e6571f inset, 0 0 0 0 #e6571f;
+    /* box-shadow: 0 0 40px 40px #e6571f inset, 0 0 0 0 #e6571f; */
     -webkit-transition: all 150ms ease-in-out;
     transition: all 150ms ease-in-out;
     width: 100px;
@@ -183,16 +205,13 @@ header{
     text-decoration: none;
     border: 1px solid #000000;
   }
-  .item:hover {
-    box-shadow: 0 0 20px 0 #fff inset, 0 0 10px 4px #e6571f;
-    color: black !important;
-  }
-  .item:active {
-    color: lime !important;
+
+  .dark-mode .item{
+    color: #d8d8d8;
 }
-.dark-mode .item{
-    background: #ffffff;
-    color: #000;
+
+.dark-mode btn-light{
+    background-color: #181818;
 }
 .op{
     width: 37px;
@@ -209,19 +228,33 @@ header{
 /* ---------------------------------------------Boton Accesibilidad------------------------------------------- */
 .acces img{
     width: 30px;
-    margin: -2px -2px 0px -2px;
 }
 /*--------------------------------------------------Estilos body----------------------------------------------- */
+.cuerpo-user{
+    background-image: url( '../img/fondo-de-body.webp');
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+.dark-mode .cuerpo-user{ 
+    background-image: url( '../img/fondo-de-body.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+
 .contenido-cuerpo {       
     height: 100%;
     background-color: #ffffffd5;
-    border: 2px solid #000;
+    border: 1px solid #000;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 .dark-mode .contenido-cuerpo{
-    background: #0c111bda;
+    background: #00000046;
 }
 .dark-mode .contenido-cuerpo h2{
     color: #fff;
@@ -233,16 +266,39 @@ header{
     background-color:#020a1d;
     color:#fff;
 }
+
+.cards{
+    background-color: #fff;
+}
+.dark-mode .cards{
+    background-color: rgb(27, 27, 27);
+}
+
+.cards h3{
+    font-size: 22px;
+}
+
+.agregar {
+    border-radius: 5px;
+    padding: 5px 20px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #0d6efd;
+}
+ 
+.dark-mode .agregar{
+    background-color: #0B318A;
+}
 /*--------------------------------------------------Estilos footer----------------------------------------------- */
 footer{
     background-color: #0b318a;
+    margin-top: auto;
     position: relative;
     bottom: 0;
     width: 100%;
 }
 .dark-mode footer{
-    background-color:#0D1821;
-    color:#fff;
+    background-color: #141414;
 }
 .sublogo{ 
     width: 50px;
@@ -369,13 +425,13 @@ img {
 .producto-box{
     box-shadow: 7px 7px 17px 0px rgba(0,0,0,0.68);
     width: 8% !important;
-    min-width: 260px !important;
-    height: 380px !important;
+    min-width: 240px !important;
+    height: 0 auto !important;
     align-items: center;
 }
 .producto-img{
     width: 220px !important;
-    height:170px !important;   
+    height:170px !important;  
 }
 .producto-img img{
     object-fit: scale-down;
@@ -415,6 +471,11 @@ h2{
     color: black;
     position: absolute;
 }
+.drak-mode .flip-box-front{
+    background-color: #333;
+    color: #fff;
+    position: absolute;
+}
 /* Style the back side */
 .flip-box-back {
     background-color: #fff;
@@ -426,6 +487,11 @@ h2{
     height:170px !important;
     padding: 10%;
 } 
+.dark-mode .flip-box-back{
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
 .card1{
     height: 32rem;
     width: 30rem; 
@@ -438,6 +504,9 @@ h2{
     flex-wrap: wrap;
     margin: 5% 5% 5% 5%;
 } 
+.dark-mode .pr-des-contactos{
+    background-color: rgb(24, 24, 24);
+}
 .liness{
     width: 30%;
     min-width: 300px;
@@ -448,6 +517,10 @@ h2{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+}
+
+.dark-mode .liness{
+    color: #d8d8d8;
 }
 .cont{
     width: 30px;
@@ -568,6 +641,10 @@ h2{
     transition: opacity .5s cubic-bezier(.17,.67,.83,.67),
                 color .5s cubic-bezier(.17,.67,.83,.67);
 }
+
+.dark-mode .flechas{
+    color: #fff !important;
+}
 .glider-prev-btn:hover,
 .glider-next-btn:hover,
 .glider-prev-btn:focus,
@@ -665,4 +742,98 @@ h2{
     width: 100% !important;
     padding: auto;
     margin-block-end: 30px;
+}
+
+/* carrito*/
+
+.carrito{
+    background-color: #fff;
+}
+
+.dark-mode .carrito{
+    background-color: #1b1b1b;
+}
+
+.dark-mode .carrito td{
+    color: #d8d8d8;
+}
+
+.dark-mode .carrito th{
+    color: #d8d8d8;
+}
+
+.dark-mode .modal-content{
+    background-color: #181818;
+}
+
+.dark-mode .modal-header h5{
+    color: #fff;
+}
+
+.dark-mode .modal-body{
+    color: #fff;
+}
+
+.tcar{
+    background-color: #fff;
+}
+.dark-mode thead{
+    color: #fff;
+}
+
+.dark-mode .tcar thead th{
+    background-color: #0B318A;
+}
+
+.dark-mode .tcar{
+    background-color: #6e6e6e;
+}
+
+
+.carritocard{
+    background-color: #fff;
+}
+
+.carritocard p{
+    color: #000;
+}
+
+.dark-mode .carritocard p{
+    color: #fff;
+}
+
+.carritocard h3{
+    font-size: 22px;
+}
+
+.dark-mode .carritocard{
+    background-color: #1b1b1b;
+}
+
+.precio{
+    color: crimson;
+}
+
+.dark-mode .precio h3{
+    color: #ff9932;
+}
+
+.btnverde{
+    background-color: #198754;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.dark-mode .btnverde{
+    background-color: #0b318a;
+}
+
+.btnrojo{
+    background-color: #dc3545;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
 }

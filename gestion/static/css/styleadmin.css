@@ -13,31 +13,31 @@
   .f4 {
     font-size: 1.2rem;
   } 
-html{
-    height: 100%;
-}  
-body{
-    background-image: url( '../img/fondo-de-body.webp');
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100%;
-    min-width: 100%;
-    display: flex;
-    flex-direction: column;
+  .dark-mode h1{
+    color: #e9e9e9;
 }
-footer{
-    margin-top: auto;
+
+.indice{
+    color: #000;
 }
+
+.dark-mode .indice {
+    color:#c7c7c7;
+}
+
 .borde{
     width: 80%;              
     margin: 0 auto;
 }
+
+
 /*-------------------------------navbar-----------------------------*/
 header{
     background: #0b318a;
+    margin: 0 auto;
 }
 .dark-mode header{
-    background-color:#0D1821;
+    background-color:#030303;
     color:#fff;
 }
 .navbar{
@@ -48,8 +48,8 @@ header{
     display: flex;
     justify-content: space-between;
 }
-.pt1 img{
-    width: 320px;
+.logo img{
+    width: 290px;
 }
 .pt2 p{
     color: #fff;
@@ -69,33 +69,55 @@ header{
     width: 30px;
 }
 /*-----------------------------Accesibilidad------------------------------*/
-.btn {
+/* .btn {
     margin-left: 35px;
     color: #212529;
     padding: 3px 3px 3px 3px;
     font-size: 1rem;
-}
+} */
 /*-----------------------Menú de navegación-----------------------------*/
 .nav-menu{
     background-color: rgb(55, 211, 198);
     color: #fff;
 }
 .dark-mode .nav-menu {
-    background-color:#2d3c5e9f;
-    color:#fff;
+    background-color:#181818;
 }
+
 .navbar-center {
     position: absolute;
     left: 50%;
     transform: translatex(-50%);
 }
+/* Style Datatables */
+
+.dark-mode td{
+    color: rgb(190, 188, 188);
+}
+
+.dark-mode tr{ 
+    background-color: #0b318a;
+}
+
+table{
+    background-color: #fff;
+}
+
+.dark-mode th{
+    background-color: #212529;
+    color: #fff;
+}
+
+.dark-mode table{
+    background-color: #0d1821c0;
+}
+
 nav{
     background-color: #e6571f;
-    border: 1px solid #000;
 }
 .dark-mode nav{
-    background-color:#fff;
-    color:#000;
+    background-color:#0b318a;
+    color:#fff;
 }
 .v-line{
     border-left: thick solid #000;
@@ -130,13 +152,18 @@ nav{
 }
 /*----------------------------------Cuerpo-------------------------------*/
 .cuerpo-admin{
-    background: url('/img/Fondo\ electrodomesticos.webp');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
+    background-image: url( '../img/fondo-de-body.webp');
     background-size: cover;
-    height: auto;
-    margin: 0 auto;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+.dark-mode .cuerpo-admin{
+    background-image: url( '../img/fondo-de-body.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+
 }
 .container{
     background-color: #ffffffd5 !important;
@@ -151,13 +178,12 @@ nav{
     background-color: #ffffffd5;
     height: 100%;
     padding: 3% 10px;
-    border: 1px solid #000;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 .dark-mode .contenido-cuerpo {
-    background: #0c111bda;
+    background: #00000046;
 }
 .part {
     color: #fff;
@@ -168,19 +194,16 @@ nav{
     width: 100%;
     margin-bottom: 15px;
 }
-.colortab{
-    background: #0c389e;
-}
-.colortab th{
+.btncrear{
+    background-color: #198754;
+    border-radius: 5px;
     color: #fff;
+    text-decoration: none;
+    padding: 8px 20px;
+}
 
-}
-.tablas{
-    background: #fff;
-}
-.dark-mode .tablas{
-    background-color: #0D1821;
-    color:#fff;
+.btncrear:hover{
+    color: #000;
 }
 /*---------------------------Botones Inicio----------------------------*/
 .botones{
@@ -202,6 +225,9 @@ nav{
     font-weight: bolder; */
     background-color: #e6571f;     
 }
+.dark-mode .bt a{
+    background-color: #0b318a;
+}
 .formulario{
     overflow: scroll;
 }
@@ -217,18 +243,20 @@ nav{
 #item {
     color: #fff;
 }
+
 .dark-mode #item{
-    color: #000;
+    color: #fff;
 }
 /*--------------------------------Footer--------------------------------*/
 footer{
     background-color: #0b318a;
     position: relative;
+    margin-top: auto;
     bottom: 0;
     width: 100%;
 }
 .dark-mode footer{
-    background-color:#0D1821;
+    background-color:#141414;
     color:#fff;
 }
  .caja{

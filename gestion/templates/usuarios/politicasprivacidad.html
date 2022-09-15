@@ -2,18 +2,22 @@
 {% load crispy_forms_tags %}
 {% block contenido %}
 {% load static %}
-<section class="contenido-cuerpo borde">
-    <div>
-        <h1 class="m-2">Políticas de privacidad</h1>
-        <p class="borde mb-4" style=" border-color:#000000; border-top-style:solid; border-top-width:2px;"></p>
-    </div>
-    <div class="m-5 px-3">
-        <h3>
-        La central de licuadoras Pulido garantiza la protección total de la información personal de sus visitantes,
-        así como también la de sus clientes. No recopilamos información personal de los visitantes del sitio web exceptuando
-        en los casos en que se provea información por elección. <br>
-        La central de licuadoras Pulido no vende comparte o divulga información personal de los visitante o clientes con terceros u otras organizaciones.
-        </h3>
-    </div> 
-</section>
+<div class="cuerpo-user">
+    <section class="contenido-cuerpo borde">
+        <div>
+            <h1 class="m-2">Políticas de privacidad</h1>
+            <div>
+                <p class="lineap borde"></p>
+            </div> 
+        </div>
+        <div class="m-5 px-3">
+            <h3>
+            La central de licuadoras Pulido garantiza la protección total de la información personal de sus visitantes,
+            así como también la de sus clientes. No recopilamos información personal de los visitantes del sitio web exceptuando
+            en los casos en que se provea información por elección. <br>
+            La central de licuadoras Pulido no vende comparte o divulga información personal de los visitante o clientes con terceros u otras organizaciones.
+            </h3>
+        </div> 
+    </section>
+</div>    
 {% endblock contenido %}

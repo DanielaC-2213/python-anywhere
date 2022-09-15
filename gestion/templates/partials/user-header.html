@@ -1,6 +1,6 @@
 {% load static %}
 <header>
-    <section class="navbar contenido-navbar borde">
+    <section class="navbar borde">
         <div class="logo">
             <img src="{% static 'img/logoo1.png' %}" alt="">
         </div>
@@ -17,7 +17,7 @@
             </div>
             <div class="part">
                     <!-- Accesibilidad -->
-                <div class="acces btn-group dropstart m-2">
+                <div class="acces dropdown m-2">
                     <button type="button" class="btn btn-light rounded-circle p-1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="rounded-circle" src="{% static 'img/icons/accesibilidad.svg' %}" width="33" alt="" srcset="">
                     </button>
@@ -25,7 +25,7 @@
                     <li><button title="Contraste" class="dropdown-item" id="dark" href=""><img src="{% static 'img/icons/eye-fill.svg' %}" width="30" alt="" srcset=""> Contraste</button></li>
                     <li><button title="Ampliar" class="dropdown-item" id="ampliar" href=""><img src="{% static 'img/icons/zoom-in.svg' %}" width="30" alt="" srcset=""> Ampliar</button></li>
                     <li><button title="Reducir" class="dropdown-item input-group" id="reducir"><img src="{% static 'img/icons/zoom-out.svg' %}" width="30" alt="" srcset="">Reducir </button></li>
-                    <li><button title="Restaurar" class="dropdown-item" id="restaurar" href=""><img src="{% static 'img/icons/eye-fill.svg' %}" width="30" alt="" srcset=""> Restaurar</button></li>
+                    <li><button title="Restaurar" class="dropdown-item" id="restaurar" href=""><img src="{% static 'img/icons/rotate-right-solid.svg' %}" width="30" alt="" srcset=""> Restaurar</button></li>
                     </ul>
                 </div>
                 <div class="op m-2"> 

@@ -1,29 +1,35 @@
 {% extends 'partials/user-body.html' %}
 {% block contenido %}
-<section class="contenido-cuerpo borde">
-    <h1 class="m-4">Carrito</h1>
-    <p class="borde mb-4" style=" border-color:#000000; border-top-style:solid; border-top-width:3px;"></p>
+<div class="cuerpo-user">
+    <section class="contenido-cuerpo borde">
+        <h1 class="m-4">Carrito</h1>
+        <div>
+            <p class="lineap borde p-2"></p>
+        </div>
         <div class="row">
             <div class="col-xl-8 d-flex flex-wrap" style="justify-content: center;">
                 {% if request.session.carrito.items %}
                 {% for key, value in request.session.carrito.items %}
-                    <div class="producto-box mb-3 bg-light p-4 d-flex flex-column justify-content-between mx-3 my-2 justify-content-center">
-                        <div class="producto-img">
-                            {% if value.foto %}
-                                <img class="producto-img" src="{{ value.foto}}" alt="">
-                            {% endif %}
-                        </div>
-                        <div class="text-center">
-                            <h3>{{value.nombre}}</h3>
-                        </div>
-                        <div class="text-center"><h3 class="text-danger">$ {{value.precio}}</h3></div>
-                        <a href="{% url 'restar' value.elemento_id %}" class="badge btn btn-danger badge-dark p-2 fs-6">Eliminar</a><br>
+                <div class="carritocard producto-box mb-3 p-4 d-flex flex-column justify-content-between mx-3 my-2 justify-content-center">
+                    <div class="producto-img">
+                        {% if value.foto %}
+                        <img class="producto-img" src="{{ value.foto}}" alt="">
+                        {% endif %}
                     </div>
+                    <div class="text-center">
+                        <h3>{{value.nombre}}</h3>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-danger">$ {{value.precio}}</h3>
+                    </div>
+                    <a href="{% url 'restar' value.elemento_id %}"
+                        class="badge btn btn-danger badge-dark p-2 fs-6">Eliminar</a><br>
+                </div>
                 {% endfor %}
                 {% endif %}
             </div>
             <div class="col-xl-4">
-                <div class="bg-white p-2 w-100">
+                <div class="carrito p-2 w-100">
                     <table class="table table-responsive table-bordered table-inverse results  w-100">
                         <thead>
                             <tr>
@@ -64,7 +70,8 @@
                         <div class="col-6"><a href="{% url 'limpiar' %}" class="btn btn-danger mb-2">Limpiar</a></div>
                         <div class="col-6"><a href="#" class="btn btn-success mb-2" data-bs-toggle="modal"
                                 data-bs-target="#cotizar">Cotización</a></div>
-                        <div class="modal fade" id="cotizar" tabindex="-1" aria-labelledby="cotizarLabel" aria-hidden="true">
+                        <div class="modal fade" id="cotizar" tabindex="-1" aria-labelledby="cotizarLabel"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg ">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -78,7 +85,12 @@
                                     <div class="modal-body">
                                         <div class="color-dark d-flex justify-content-end">
                                             <script>
-                                                var options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
+                                                var options = {
+                                                    weekday: 'long',
+                                                    day: 'numeric',
+                                                    month: 'long',
+                                                    year: 'numeric'
+                                                };
                                                 date = new Date().toLocaleDateString(undefined, options);
                                                 date = new Date().toLocaleDateString();
                                                 document.write(date);
@@ -87,7 +99,7 @@
                                         <div class="formulario">
                                             {% if request.session.carrito.items %}
                                             <form id="form1" class="m-3">
-                                                <table class="table bg-white table-bordered results" id="proyectos">
+                                                <table class="tcar table table-bordered results" id="proyectos">
                                                     <thead class="bg-info">
                                                         <tr class="text-white">
                                                             <th scope="col">Nombre</th>
@@ -106,7 +118,8 @@
                                                         {% else %}
                                                         <tr>
                                                             <td colspan="3">
-                                                                <div class="alert alert-danger text-center">Sin Productos</div>
+                                                                <div class="alert alert-danger text-center">Sin Productos
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                         {% endif %}
@@ -115,10 +128,6 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="modal-footer d-flex justify-content-center">
-                                        <input type="submit" class="btn btn-success" value="imprimir"></button>
-                                        </form>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -126,5 +135,6 @@
                 </div>
             </div>
         </div>
-</section>
+    </section>
+</div>    
 {% endblock contenido %}

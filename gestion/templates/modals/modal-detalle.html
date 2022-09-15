@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detalles de producto</h5>
-                <a href="{{url_back}}" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                <a href="{% url 'usuarios-accesorios' %}" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -18,15 +18,17 @@
                             <strong class="m-4 w-50 border py-1 text-danger mx-auto mt-3">${{elemento.precio|floatformat}}</strong>
                             <p class="card-text fw-bold text-wrap">{{elemento.descripcion}}</p>
                             <div class="row">
+                                {% if  elemento.stock_elemento > 0 %}
                                 <div class="col">
-                                    <strong class="card-text">Unidades disponibles: {{elemento.stock_elemento}}</strong>
+                                    <strong class="card-text text-success">Unidades disponibles: {{elemento.stock_elemento}}</strong>
+                                    <a href="{% url 'agregar' elemento.id %}" class="btn w-75 mx-auto mt-3 btn-primary">Agregar al carrito</a>
                                 </div>
-                                <div class="col">
-                                    <strong class="card-text">{{elemento.stock}}</strong>
-                                </div>
+                                {% else %}
+                                <strong class="card-text text-danger">Unidades disponibles: {{elemento.stock_elemento}}</strong>
+                                <button  type="submit" disabled class="btn w-75 mx-auto mt-3 btn-primary">Agregar al carrito</buttton>
+                                {% endif %}
                             </div>
                         </div>
-                        <a href="{% url 'agregar' elemento.id %}" class="btn w-75 mx-auto mt-3 text-light btn btn-primary">Agregar al carrito</a>
                     </div>    
                 </div>   
             </div>
